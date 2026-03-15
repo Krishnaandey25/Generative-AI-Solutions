@@ -1,6 +1,5 @@
 langchain
 openai
 transformers
-torch
-faiss-cpu
-python-dotenv
+chromadb
+pytest
