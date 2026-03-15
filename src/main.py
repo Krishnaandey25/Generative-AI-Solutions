@@ -1,10 +1,14 @@
-class AIService:
-    def __init__(self):
-        print(f'Starting {repo} service...')
+import logging
+from typing import List, Optional
 
-    def run(self):
-        pass
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
-if __name__ == '__main__':
-    service = AIService()
-    service.run()
+class RAGPipeline:
+    def __init__(self, provider: str = "OpenAI"):
+        self.provider = provider
+        logger.info(f"Initialized RAG Pipeline with {provider}")
+
+    def process_query(self, query: str) -> str:
+        logger.info(f"Processing query: {query}")
+        return f"Response for {query}"
