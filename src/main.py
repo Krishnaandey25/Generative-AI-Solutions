@@ -37,10 +37,26 @@ class LLMOrchestrator:
     def __init__(self, provider_type: str = "openai"):
         self.provider = LLMFactory.get_provider(provider_type)
 
+    @classmethod
+    def create(cls, provider_type: str = "openai") -> 'LLMOrchestrator':
+        \"\"\"Factory method to create an instance of LLMOrchestrator.\"\"\"
+        return cls(provider_type)
+
+    def __enter__(self):
+        \"\"\"Context manager entry point.\"\"\"
+        print(f"Entering LLM context with provider: {type(self.provider).__name__}")
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        \"\"\"Context manager exit point.\"\"\"
+        print("Exiting LLM context. Cleaning up resources...")
+        # Add cleanup logic if needed
+
     def execute_request(self, prompt: str) -> str:
         \"\"\"Execute a request using the configured provider.\"\"\"
         return self.provider.generate(prompt)
 
 if __name__ == \"__main__\":
-    orchestrator = LLMOrchestrator(provider_type="openai")
-    print(orchestrator.execute_request("Optimize the MLOps pipeline for scale."))
+    # Using factory method and context manager
+    with LLMOrchestrator.create(provider_type="openai") as orchestrator:
+        print(orchestrator.execute_request("Optimize the MLOps pipeline for scale."))
