@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Pandey"
+  given-names: "Krishna"
+title: "Advanced AI Research Frameworks"
+version: 1.0.0
+date-released: 2026-03-15
+url: "https://github.com/Krishnaandey25"
